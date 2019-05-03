@@ -1,5 +1,5 @@
 const api = APIClient;
-console.log('Welcome to dbu! Why are you looking here? :D');
+console.log('Welcome to discordboats.club! Why are you looking here? :D');
 
 console.log('%c🚫 Warning! 🚫', 'color: red; font-weight: bold; font-size: x-large');
 console.log('%cTyping anything here could make bad stuff happen!', 'color: #e91e63; font-size: large');

@@ -63,9 +63,3 @@ typings/
 # next.js build output
 .next
 package-lock.json
-yarn.lock
-
-.idea
-
-rethinkdb-new/
-ssl/

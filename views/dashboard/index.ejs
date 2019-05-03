@@ -15,6 +15,9 @@
                     <subtitle>Bots you've submitted to the list.</subtitle>
                     <hr>
                     <a href="/dashboard/new" class="waves-effect waves-light btn">Add Bot</a>
+                    <% if (user.mod || user.admin) { %>
+                    <a href="/dashboard/queue" class="waves-effect waves-light btn">View Queue</a>
+                    <% } %>
                 </div>
                 <% if (rawBots.length == 0) { %>
                 <p>You have no bots! <a href="/dashboard/new">Add one?</a></p>

@@ -11,11 +11,11 @@
         <div class="main">
             <div class="container">
                 <%- include("parts/searchBar") %>
-                <h3>Search results for </h3>
+                <h3>Search results for "<%= searchQuery %>"</h3>
                 <subtitle>
                     <%= bots.length %> found.</subtitle>
                 <hr>
-                <% console.log(botChunks, bots); if (bots.length == 0) { %>
+                <% if (bots.length == 0) { %>
                 <p>We couldn't find any bots for "<strong><%= searchQuery %></strong>".</p><%= console.log(searchQuery); %>
                 <% } else { %>
                 <div class="bot-cards">

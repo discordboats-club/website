@@ -1,7 +1,6 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css';
 @import 'https://fonts.googleapis.com/css?family=Roboto|Material+Icons';
-//@import 'https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css';
-@import "font-awesome";
+
 #snow {
     position: fixed;
     top: 0;
@@ -9,10 +8,6 @@
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-}
-
-.blue.lighten-3 {
-    background-color: #212121 !important;
 }
 
 body {
@@ -43,36 +38,9 @@ subtitle {
     position: relative;
 }
 .bot-card {
-    size: 30%;
-}
-.card {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-padding: 2rem;
-  color: #aaa;
-    min-width: 0;
-  box-shadow: 0 .25rem .25rem rgba(0,0,0,0.2),
-    0 0 1rem rgba(0,0,0,0.2);
-border-radius: 6px;
-}
-
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-/* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
-width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    size: 5%;
 }
 .container {
-
     padding-top: 2%;
     padding-bottom: 2%;
 }
@@ -178,10 +146,3 @@ body.dark-theme input,
 body.dark-theme textarea {
     color: white;
 }
-
-.blue-grey.darken-1 {
-    background-color: #202225 !important;
-}
-.btn-sm
-.align-center {
-  text-align: center; }

@@ -2,26 +2,18 @@
 <ul id="profile-dropdown" class="dropdown-content">
     <li><a href="/user/<%=user.id%>">Profile</a></li>
     <li><a href="/dashboard">Dashboard</a></li>
-<% if (user.mod || user.admin) { %>
-	<li><a href="/admin">Staff Panel</a></li>  
-<% } %>
     <li><a id="log-out-indd">Log Out</a></li>
 </ul>
 <% } %>
 
-<nav class="blue lighten-l">
+<nav class="blue lighten-3 nav-extended">
     <div class="nav-wrapper">
-       <a href="/" class="brand-logo">&nbsp;discordboats.club</a>
+        <span class="tt"><a href="/" class="brand-logo">discordboats.club</a></span>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-		<li><a href="/staff">Staff Team</a></li>
-	
-
-				 
-            <li><a href="/browse">Browse Bots</a></li>
-	    <li><a href="/dashboard/new">Add Bot</a></li>
-      <li><a href="https://discord.gg/Cw4GDJ4">Our Discord</a></li>
-
+            <li><a href="https://discord.gg/Cw4GDJ4">Our Discord</a></li>
+            <li><a href="/browse">Browse</a></li>
             <li><a href="/certification">Certification</a></li>
+            <!-- <li><a href="#">F.A.Q.</a></li> -->
             <% if (typeof user !== 'object') { %>
             <li><a href="/discord/login">Login</a></li>
             <% } else { %>

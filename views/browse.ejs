@@ -10,8 +10,8 @@
         </div>
         <div class="main">
             <div class="container">
-             
-                <h3>Browse Bots</h3>
+                <%- include("parts/searchBar") %>
+                <h3>Browse</h3>
                 <subtitle>Page
                     <%= page + 1 %> of
                     <%= pages %>, viewing bots
@@ -20,7 +20,7 @@
                     <%= items %>
                 </subtitle>
                 <hr>
-   <%- include("parts/searchBar") %>
+
                 <div class="row">
                     <div id="sortSelect" class="input-field col l3">
                         <select>

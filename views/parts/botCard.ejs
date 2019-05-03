@@ -1,25 +1,25 @@
-<div class="col s12 m3 col-md-6 col-lg-4 align-center" id="<%= bot.id %>">
-    <div class="card hoverable blue-grey darken-1 col-lg-2 col-md-3 col-sm-4 col-6" style="max-width: 18rem; max-length: 18rem;">
+<div class="col s12 m3" id="<%= bot.id %>">
+    <div class="card hoverable blue-grey darken-1">
         <div class="card-image bot-image-container">
-            <a href="/bot/<%= bot.vanityURL || bot.id %>"><img src="<%= bot._discordAvatarURL %> " class="bot-image" alt="Bot Profile Picture"></a>
+            <a href="/bot/<%= bot.vanityURL || bot.id %>"><img src="<%= bot._discordAvatarURL %>" class="bot-image" alt="Bot Profile Picture"></a>
         </div>
         <div class="card-content white-text">
             <span class="card-title">
-                <%= bot.name %> <i class="fas fa-circle" style="color: <%= bot.online ? '#5cb860' : '#f55a4e' %>; height: 20px:"></i>
-				
-					<% if (bot.certified) { %>
-					  <i class="fas fa-star" style="color: #ffff1a;"></i>
-					<% } %>
-				
-				</span>
+                <%= bot.name %></span>
             <p class="bot-card-desc">
                 <%= bot.shortDescription %>
             </p>
 
-		<br>	
+            <div class="card-server-count chip <%= bot.online ? 'green' : 'red' %> lighten-2">
+                <%= bot.online ? 'online' : 'offline' %>
+            </div>
+            <% if (bot.servers) { %>
+            <div class="card-server-count chip lime lighten-2">
+                <%= bot.servers %> servers</div>
+            <% } %>
         </div>
-       <div class="card-action">
-            <a href="/invite_url/<%=bot.id%>" <%- typeof queue !=='undefined' ? 'target="_blank"' : '' %>> Invite</a>
+        <div class="card-action">
+            <a href="/invite_url/<%=bot.id%>" <%- typeof queue !=='undefined' ? 'target="_blank"' : '' %>>Invite</a>
             <a href="/bot/<%= bot.vanityURL || bot.id %>">View</a>
             <% if (typeof queue !== "undefined") { %>
             <a class="accept-button" href="https://discordapp.com/oauth2/authorize?client_id=<%= bot.id %>&scope=bot&guild_id=<%= config.ids.mainServer %>" target="_blank"><strong>Accept</strong></a>

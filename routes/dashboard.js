@@ -43,7 +43,7 @@ app.get('/bot/:id/manage', async (req, res, next) => {
     } else res.status(403).json({ error: 'you do not own this bot' });
 });
 
-app.get('dashboard/queue', async (req, res) => {
+app.get('/queue', async (req, res) => {
     if (!(req.user.mod || req.user.admin)) return res.status(403).json({ error: 'No permission' });
     const bots = await Promise.all(
         (await r

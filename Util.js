@@ -90,40 +90,9 @@ module.exports = class Utils {
         user._bots = await Promise.all((await r.table('bots').filter({ ownerID: user.id })).map(b => Utils.attachPropBot(b)));
         user._verifiedBots = user._bots.filter(bot => bot.verified);
         user._chunked = chunk(user._verifiedBots, 4);
-		user.staff = false;
-		if(user.mod || user.admin) user.staff = true;
-		if (user._bots.find(b => b.certified)) user.badges.push('Certified Developer');
         if (user.mod) user.badges.push('Moderator');
         if (user.admin) user.badges.push('Administrator');
-		if (user.id === "131417543888863232" || user.id === "398536643172237314" || user.id === "233823931830632449"|| user.id === "250536623270264833") user.badges.push('Founder');
-        return user;
-    }
-	
-	static async StaffattachPropUser(user) {
-        const client = require('./ConstantStore').bot;
-        const { r } = require('./ConstantStore');
-        const discordUser = client.users.get(user.id) || (await client.users.fetch(user.id));
-
-		user.clientStatus = discordUser.presence.clientStatus;
-		user.activity = discordUser.presence.activity;
-        user.online = discordUser.presence.status !== 'offline';
-		
-        user.username = discordUser.username;
-        user.discriminator = discordUser.discriminator;
-        user._discordAvatarURL = discordUser.displayAvatarURL({ format: 'png', size: 512 });
-        user._bots = await Promise.all((await r.table('bots').filter({ ownerID: user.id })).map(b => Utils.attachPropBot(b)));
-        user._verifiedBots = user._bots.filter(bot => bot.verified);
-        user._chunked = chunk(user._verifiedBots, 4);
-		user.staff = false;
-		user.staffAdmin = false;
-		user.staffMod = false;
-		if(user.mod || user.admin) user.staff = true;
-		if(user.admin) user.staffAdmin = true;
-		if(user.mod) user.staffMod = true;
-		if (user.id === "131417543888863232" || user.id === "398536643172237314" || user.id === "233823931830632449" || user.id === "250536623270264833") user.badges.push('Founder');
-        if (user.admin) user.badges.push('Administrator');
-        if (user.mod) user.badges.push('Moderator');
-		
+        if (user._bots.find(b => b.certified)) user.badges.push('Certified Developer');
         return user;
     }
     /**

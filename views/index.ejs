@@ -3,14 +3,14 @@
     <head>
         <%- include("parts/head") %>
         <meta property="og:title" content="discordboats.club" />
-        <meta property="og:description" content="discordboats.club - Discord bot list with an evergrowing directory and userbase. Come enrich your discord experience with our directory of bots." />
+        <meta property="og:description" content="Discord Boats - Open-source Discord bot list with an evergrowing directory and userbase. Come enrich your discord experience with our directory of bots." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://botlistuniverse.ga" />
-        <meta property="og:image" content="https://raw.githubusercontent.com/discordboats-club/website/old/static/logo.png" />
+        <meta property="og:url" content="https://discordboats.club" />
+        <meta property="og:image" content="https://discordboats.club/logo.png" />
         <meta property="og:site_name" content="discordboats.club">
         <meta name="theme-color" content="#90CAF9">
         <meta name="title" content="Home">
-        <meta name="description" content="discordboats.club -Discord bot list with an evergrowing directory and userbase. Come enrich your discord experience with our directory of bots.">
+        <meta name="description" content="Discord Boats - Open-source Discord bot list with an evergrowing directory and userbase. Come enrich your discord experience with our directory of bots.">
         <meta name="keywords" content="Discord,Discord Bot,Discord Bots,discordboats,DBC,Discord Bot List,discord boats,boats,discordboats.club,dboats,dbots,dbot,bots,list,directory,bot list">
 
     </head>
@@ -19,13 +19,11 @@
         <div class="header">
             <%- include("parts/header") %>
         </div>
-         <div class="main">
+        <div class="main">
             <div class="container">
-              
-            
+                <%- include("parts/searchBar") %>
                 <h3>Popular Bots</h3>
                 <hr>
-				<br>
                 <% if (rawBots.length == 0) { %>
                 <p>There's no bots on this site at the moment. <a href="/dashboard/new">Add one?</a></p>
                 <% } else { %>
@@ -34,12 +32,6 @@
                     <%- botChunks.map(chunk => `<div class="row bot-card">${chunk.map(bot => include("parts/botCard", {bot})).join("")}</div>`).join("") %>
                 </div>
                 <% } %>
-				
-				<h3>Want to Search?</h3>
-                <hr>
-				<br>
-				<%- include("parts/searchBar") %>
-				
             </div>
         </div>
     </body>

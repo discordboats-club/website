@@ -40,29 +40,12 @@ module.exports.run = async (client, msg) => {
                     value: `Evaluate some code with the bot\n\n**Usage:**\n\`${client.config.botPrefix}eval <code>\``
                 },
                 {
-						name: 'roleinfo',
-					value: `Responds With role infomation\n\n**Usage:**\n\`${client.config.botPrefix}roleinfo <role>\``
-				},
-                {
-					name: 'userinfo',
-					value: `Responds With user infomation\n\n**Usage:**\n\`${client.config.botPrefix}userinfo <user>\``
+                    name: 'Ping',
+                    value: 'Responds with the bot ping and response time'
                 },
                 {
                     name: 'Uptime',
-                    value: `Responds with the site\'s uptime`
-				},
-                {
-					name: 'stats',
-					value: `Responds with bot and vps information`
-				},
-                {
-					name: 'serverinfo',
-					value: `Responds With server infomation`
-				},
-                {
-				
-					name: 'emojis',
-					value: `Responds With server emojis`
+                    value: 'Responds with the site\'s uptime'
                 }
             ]
         }

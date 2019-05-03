@@ -1,5 +1,4 @@
 const express = require('express');
-const expressSitemapXml = require('express-sitemap-xml')
 const session = require('express-session');
 const passport = require('passport');
 const Discord = require('passport-discord');
@@ -14,17 +13,8 @@ const config = require('./config');
 const minifyHTML = require('express-minify-html');
 const RethinkStore = require('session-rethinkdb')(session);
 const port = process.env.PORT || require('./config.json').listeningPort || 3000;
-const path = require('path');
-const https = require('https');
-const http = require('http');
-const fs = require('fs');
 
 const app = (module.exports = express());
-app.use(expressSitemapXml(getUrls, 'https://discordboats.club'))
-
-async function getUrls () {
-  return await getUrlsFromDatabase()
-}
 
 app.use(require('helmet')());
 app.set('view engine', 'ejs');
@@ -56,12 +46,9 @@ app.use(
     })
 );
 
-app.use(express.static(__dirname + '/unused'));
-app.use('/unused', express.static(__dirname + '/unused'));
 app.use(express.static('static'));
 app.use(express.json());
 app.use('/api/public', require('./routes/botapi'));
-app.use('/certify' , require('./routes/certificationRoute'));
 app.use(session({ saveUninitialized: true, resave: false, name: 'discordboats_session', secret: require('./ConstantStore').secret, store: new RethinkStore(require('./ConstantStore').r) }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -85,7 +72,7 @@ passport.use(
             clientSecret: config.clientSecret,
             scope: discordScopes,
             callbackURL: config.callbackURL,
-	    authorizationURL: 'https://discordapp.com/api/oauth2/authorize?prompt=none'
+            authorizationURL: 'https://discordapp.com/api/oauth2/authorize?prompt=none'
         },
         async (accessToken, refreshToken, profile, done) => {
             // we'll enable storing extra user data here.
@@ -112,7 +99,6 @@ passport.use(
 );
 
 app.use(require('./routes/index'));
-//app.use('/', require('./routes/sitemaps'));
 app.use('/discord', require('./routes/discord'));
 app.use('/dashboard', ensureLoggedIn('/discord/login'), require('./routes/dashboard'));
 app.use('/api', require('./routes/api'));
@@ -138,20 +124,6 @@ setInterval( async () => {
     }
 }, 8 * 60 * 60 * 1000);
 
-const options = {
-   key: fs.readFileSync(__dirname + '/ssl/private.pem', 'utf8'),
-  cert: fs.readFileSync(__dirname + '/ssl/public.pem', 'utf8')
-};
-
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer(options, app);
-
-httpServer.listen(80, () => {
-	console.log('HTTP Server running on port 80');
+app.listen(port, () => {
+    console.log(`Listening on port ${port}.`);
 });
-
-httpsServer.listen(443, () => {
-	console.log('HTTPS Server running on port 443');
-});
-
-//yes test

@@ -1,3 +1,4 @@
 {
   "discord.enabled": false
+  "javascript.preferences.quoteStyle": "single"
 }

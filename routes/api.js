@@ -1,8 +1,7 @@
-﻿const { readFileSync } = require('fs');
+const { readFileSync } = require('fs');
 const express = require('express');
 const app = (module.exports = express.Router());
 const Joi = require('joi');
-const Discord = require("discord.js")
 const { r, bot: client } = require('../ConstantStore');
 const randomString = require('randomstring');
 const Util = require('../Util');
@@ -41,7 +40,17 @@ console.log(`[api-route] loaded ${badBots.length} bad bots.`);
 app.get('/search/autocomplete', async (req, res) => {
     const q = req.query.q;
     if (typeof q !== 'string') return res.sendStatus(400);
-    const bots = (await r.table('bots').filter(bot => bot('name').downcase().match('^' + q.toLowerCase()).and(bot('verified'))).pluck('name').limit(5).run()).map(bot => bot.name);
+    const bots = (await r
+        .table('bots')
+        .filter(bot =>
+            bot('name')
+                .downcase()
+                .match('^' + q.toLowerCase())
+                .and(bot('verified'))
+        )
+        .pluck('name')
+        .limit(5)
+        .run()).map(bot => bot.name);
     res.json({ ok: 'View data property', data: bots });
 });
 
@@ -114,16 +123,9 @@ app.post('/bot', async (req, res) => {
     await r
         .table('bots')
         .insert(data)
-        .run();	
-		
-	await r
-        .table('bots')
-		.filter({"id": data.id})
-        .update({"name": botUser.username, "discriminator": botUser.discriminator, "tag": botUser.username + "#" + botUser.discriminator})
-        .run();		
-		
+        .run();
     res.status(200).json({ ok: 'Created bot' });
-    client.channels.get(config.ids.logChannel).send(`📥 <@${req.user.id}> added ${botUser.username} (<@&${config.ids.staffRole}>)`);
+    client.channels.get(config.ids.logChannel).send(`📥 <@${req.user.id}> added ${botUser.username} (<@&${config.ids.staffRole}>).`);
 });
 
 const editBotSchema = Joi.object()
@@ -174,9 +176,7 @@ app.patch('/bot/:id', async (req, res) => {
             .get(bot.id)
             .update(data)
             .run();
-	
-	
-        client.channels.get(config.ids.logChannel).send(`✏ <@${req.user.id}> edited ${botUser.username} ${config.baseURL}/bot/${botUser.id}`);
+        client.channels.get(config.ids.logChannel).send(`✏ <@${req.user.id}> edited ${botUser.username}.`);
         res.json({ ok: 'Edited bot' });
     } else res.status(403).json({ error: 'You do not own this bot' });
 });
@@ -194,8 +194,7 @@ app.delete('/bot/:id', async (req, res) => {
             .delete()
             .run();
         const botUser = client.users.get(bot.id) || (await client.users.fetch(bot.id));
-	
-        client.channels.get(config.ids.logChannel).send(`🗑 <@${req.user.id}> deleted ${botUser.username}`);
+        client.channels.get(config.ids.logChannel).send(`🗑 <@${req.user.id}> deleted ${botUser.username}.`);
         client.guilds
             .get(config.ids.mainServer)
             .member(botUser.id)
@@ -302,9 +301,9 @@ app.post('/bot/mod/verify', async (req, res) => {
     const staffUser = client.users.get(req.user.id) || client.users.fetch(req.user.id);
     if (data.verified) {
         try {
-            await discordOwner.send(`🎉 "${bot.name}" was verified by ${staffUser.tag} ${config.baseURL}/bot/${botUser.id}`);
+            await discordOwner.send(`🎉 "${bot.name}" was verified by ${staffUser.tag}!`);
         } catch (e) {}
-        client.channels.get(config.ids.logChannel).send(`🎉 ${botUser.username} by <@${bot.ownerID}> was verified by ${staffUser} ${config.baseURL}/bot/${botUser.id}`);
+        client.channels.get(config.ids.logChannel).send(`🎉 ${botUser.username} by <@${bot.ownerID}> was verified by ${staffUser}!`);
         await r
             .table('bots')
             .get(bot.id)
@@ -314,9 +313,8 @@ app.post('/bot/mod/verify', async (req, res) => {
         console.log(data.reason);
         if (!data.reason || !data.reason.trim()) return res.status(400).json({ error: 'A reason is required' });
         try {
-            await discordOwner.send(`❌ Your bot, ${bot.name}, was rejected by ${staffUser.tag}. Check <#${config.ids.logChannel}> for more information`);
+            await discordOwner.send(`❌ Your bot, ${bot.name}, was rejected by ${staffUser.tag}. Check <#${config.ids.logChannel}> for more information.`);
         } catch (e) {}
-	
         client.channels.get(config.ids.logChannel).send(`❌ ${botUser.tag} by <@${bot.ownerID}> was rejected by ${staffUser}.\nReason: \`${data.reason}\``);
         await r
             .table('bots')

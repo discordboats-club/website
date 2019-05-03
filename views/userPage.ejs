@@ -25,26 +25,18 @@
 										<div>
 											<%= profile.username %><span style="font-size: 0.7em;">#<%= profile.discriminator %></span></div>
 
-										<div class="square  <%= profile.online ? 'green' : 'grey' %> btn btn-orange btn-1x" style="display: inline-block;">
-											<%= profile.online ? 'Online' : 'Offline' %>
-										</div>	&nbsp;
+										<div class="chip <%= profile.online ? 'green' : 'red' %> lighten-2" style="display: inline-block;">
+											<%= profile.online ? 'online' : 'offline' %>
+										</div>
 										<% if (profile._verifiedBots.length) { %>
-										<div class="btn orange btn-orange btn-1x" style="display: inline-block;">Owns
+										<div class="chip lime lighten-2" style="display: inline-block;">owns
 											<%= profile._verifiedBots.length %> bot<%= profile._verifiedBots.length === 1 ? '' : 's' %>
-										</div>	&nbsp;
+										</div>
 										<% } %>
 										<% profile.badges.forEach(b => { %>
-										
-											<% if(b == "Founder"){ %>
-											<div class="btn purple btn-orange btn-1x" style="display: inline-block; color: white; background-color: #a300df !important" title="<%= profile.username %> is one of the founders of DiscordBoats.Club!">
-												Founder
-											</div>	&nbsp;
-											<% } else { %>
-											
-											<div class="btn blue btn-orange btn-1x" style="display: inline-block;">
-												<%= b %>
-											</div>	&nbsp;
-											<% } %>
+										<div class="chip blue lighten-2" style="display: inline-block;">
+											<%= b %>
+										</div>
 										<% }) %>
 									</div>
 								</h4>

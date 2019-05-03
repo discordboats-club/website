@@ -1,25 +1,22 @@
-const discord = require('discord.js');
+module.exports = {
+    help: {
+        description: 'dboats uptime'
+    }
+};
 
-module.exports.run = (client, message, args) => {
-  var hrs = Math.round(client.uptime / (1000 * 60 * 60)) + " hour(s),"
-  var mins = " " + Math.round(client.uptime / (1000 * 60)) % 60 + " minute(s), "
-  var sec = Math.round(client.uptime / 1000) % 60 + " second(s)"
-  if (hrs == "0 hour(s),") hrs = ""
-  if (mins == " 0 minute(s), ") mins = ""
-  let uptime = hrs+mins+sec
-  
-  let em = new discord.MessageEmbed()
-  .setTitle(`**${client.user.username} Uptime**\n`)
-  .setDescription(`**Serving ${client.users.size} users for ${uptime}!**`)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .setFooter(`Requested by ${message.author.username}.`)
-  message.channel.send({embed: em})
-}
-
-exports.help = {
-  category: 'Fun',
-  name: 'uptime',
-  description: 'Ask the 8ball a question.',
-  usage: '8ball <question>'
+module.exports.run = async (client, msg) => {
+    let s;
+    s = Math.round(client.uptime / 1000);
+    let d = Math.round(Math.floor(s / 86400))
+    s %= 86400;
+    let h = Math.round(Math.floor(s / 3600));
+    s %= 3600;
+    let m = Math.round(Math.floor(s / 60));
+    s = s % 60;
+    let up;
+    if (s && !m && !h && !d) up = `${s} seconds`;
+    if (s && m && !h && !d) up = `${m} minutes, ${s} seconds`;
+    if (s && m && h && !d) up = `${h} hours, ${m} minutes, ${s} seconds`;
+    if (s && m && h && d) up = `${d} days, ${h} hours, ${m} minutes, ${s} seconds`;
+    msg.channel.send(`:clock: discordboats.club Uptime:\n ${up}`);
 };

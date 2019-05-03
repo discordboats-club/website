@@ -7,14 +7,14 @@ module.exports = {
         description: 'pulls from the github origin `old` branch'
     },
     options: {
-        ownerOnly: false
+        ownerOnly: true
     },
     aliases: ['git']
 };
 
 module.exports.run = async (client, msg, args) => {
     try {
-        const result = await exec('git pull origin 2.0');
+        const result = await exec('git pull origin old');
         await msg.channel.send(`Pulled successfully! Restarting... \`\`\`\n${result.stderr + result.stdout}\n\`\`\``);
         process.exit();
     } catch (e) {
