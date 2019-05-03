@@ -1,0 +1,21 @@
+{
+    "clientID": "",
+    "clientSecret": "",
+    "token": "",
+    "baseURL": "https://discordboats.club",
+    "callbackURL": "https://discordboats.club/discord/callback",
+    "listeningPort": 3000,
+    "automaticBackup": false,
+    "evalUsers": [],
+    "botPrefix": "dbc ",
+    "embedColor": 7506394,
+    "ids": {
+        "logChannel": "",
+        "staffRole": "",
+        "staffChannel": "",
+        "mainServer": "",
+        "verificationServer": "",
+        "botRole": "",
+        "botDeveloperRole": ""
+    }
+}

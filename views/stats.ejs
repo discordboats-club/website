@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("parts/head") %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <h3>Statistics</h3>
+                <subtitle>Some interesting stats about discordboats.club</subtitle>
+                <hr>
+                <div class="row">
+                    <div class="col s4">
+                        <div class="container">
+                            <div class="center-align">
+                                <h4># of Bots</h4>
+                                <hr>
+                                <h4 class="stat-value">
+                                    <%= botCount %>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="container">
+                            <div class="center-align">
+                                <h4># of Users</h4>
+                                <hr>
+                                <h4 class="stat-value">
+                                    <%= userCount %>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="container">
+                            <div class="center-align">
+                                <h4># of Likes</h4>
+                                <hr>
+                                <h4 class="stat-value">
+                                    <%= likeCount %>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4">
+                        <div class="container">
+                            <div class="center-align">
+                                <h4># of Bots Invited</h4>
+                                <hr>
+                                <h4 class="stat-value">
+                                    <%= botsInvited %>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <%- include("parts/footer") %>
+        <%- include("parts/scripts") %>
+    </footer>
+</html>

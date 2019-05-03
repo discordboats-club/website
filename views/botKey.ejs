@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("parts/head", { title: 'API key' }) %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="center-align">
+                    <h2>API</h2>
+                    <p>
+                        For Discord bots using the Node.js language, we have an <a href="https://npmjs.org/package/dbu.js">NPM
+                            module</a> to make your experience easier! <br>
+                        We're working on creating more modules for more languages. Feel free to create one in your
+                        language &amp; tell us about it in our Discord! <br>
+                        <br>
+                        However, if you prefer to make raw requests, here are the endpoints: <br>
+                        All requests must contain an "Authorization" header with your API key that can be found at the
+                        bottom of the page.<br>
+                        <br>
+                        <code class="red-text">GET /api/public/stats</code> - gets statistics for botlistuniverse.ga
+                        (like https://botlistuniverse.ga/stats).<br>
+                        <code class="red-text">POST /api/public/bot/stats</code> - set your bot statistics, currently
+                        does not support sharding (must be owner of bot).<br>
+                        <code class="red-text">GET /api/public/bot/:id</code> - get public bot info.<br>
+                        <code class="red-text">GET /api/public/bot/me</code> - get private bot info (must be owner of
+                        bot).<br>
+                        <code class="red-text">GET /api/public/bot/me/liked/:id</code> - get if a user has liked the
+                        bot (and when) or not<br>
+                        <code class="red-text">GET /api/public/user/:id</code> - get public user info.<br>
+                        <br>
+                        The POST body for the stats endpoint should look like this, replacing 1337 with your bot's
+                        server count.
+                        <p class="left-align red-text">
+                            <code>
+                        {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"server_count": 1337<br>
+                        }
+                    </p>
+                    </code>
+                        </p>
+                        <hr>
+                        <h4>Webhooks</h4>
+                        <p>To get when a user likes or unlikes your bot, botlistuniverse.ga has a webhook feature</p>
+                        <p>To use this, you create a web server (the <a href="https://npmjs.org/package/dbu.js">NPM
+                                module</a> supports this as well) to listen on a port and path for a POST request. When
+                            you
+                            receive the POST request, it will have an Authorization header (set to what you set it to
+                            on
+                            the bot create/edit page) and it can be used to verify that the webhook is from
+                            discordboats.club. Once validated, you can see the JSON body in the request to get
+                            information.
+                            The body will look like this:</p>
+                        <p class="left-align red-text">
+                            <code>
+                                    {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"event": "like/unlike",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"botId": "the id of the bot that got liked/unliked",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"userId": "the id of the user that liked/unliked"<br>
+                                    }
+                                </code>
+                        </p>
+                        <hr>
+                        <p>Do not share your API key. Your API key is...</p>
+                        <code class="red-text"><%= bot.apiToken %></code>
+                        <br>
+                        <a class="waves-effect waves-light btn" href="/bot/<%= bot.id %>/reset">Reset your API key</a>
+                </div>
+            </div>
+    </body>
+    <footer>
+        <%- include("parts/footer") %>
+        <%- include("parts/scripts") %>
+    </footer>
+</html>

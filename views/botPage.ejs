@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("parts/head", { title: bot.name }) %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <script>window.IS_BOT_PAGE = true;</script>
+        <meta property="og:site_name" content="discordboats.club">
+        <meta property="og:title" content="<%= bot.name %>" />
+        <meta property="og:description" content="View <%= bot.name %> on discordboats.club &bullet; <%= bot.shortDescription %>">
+        <meta property="og:image" content="<%= bot._discordAvatarURL %>" />
+        <meta name="theme-color" content="#90CAF9">
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("parts/header", { childBefore: bot.verified ? "" : `<div class="unverified-notice"><div class="container"><div class="unverified"><center><h5>This bot is currently unverified.</h5></center><center><h6>Only you can see it.</h6></center></div></div></div>` }) %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="bot-page">
+                    <div class="bp-top">
+                        <!-- <div class="bot-image-container">
+                        <img src="/boat.jpg" class="bot-image">
+                    </div> -->
+                        <div class="bp-head">
+                            <a id="like-btn" href="#" data-bot-id="<%=bot.id%>" class="<%= typeof user == `object` ? `` : `modal-trigger` %>"
+                                data-target="auth-modal" style="width: 17.5vh; height: 20vh;">
+                                <p class="toast center" id="like-btn-text">
+                                    <%=bot.likeCount%>
+                                </p>
+                                <i class="fas fa-heart <%=bot._userLikes?`red-text`:`grey-text`%>" style="width: 18vh; height: 13vh;"></i>
+                            </a>
+                            <div class="bp-avatar">
+                                <img class="responsive-img circle" width="128" height="128" alt="Bot Avatar" src="<%= bot._discordAvatarURL %>">
+                            </div>
+                            <div class="bp-title">
+                                <h4>
+                                    <%= bot.name %> <i class="fas fa-circle  fa-sm" style="color: <%= bot.online ? '#5cb860' : '#f55a4e' %>; height: 20px:"></i>
+                                </h4>
+ <br>
+                                <div class="tags has-addons">
+                                    <div class="row">
+								
+                                        <% if (bot.library) { %>
+                                        <div class="square blue btn btn-orange btn-1x">
+                                            <%= bot.library %>
+                                        </div>&nbsp;
+                                    
+                                        <% } %>
+                                        <% if (bot.servers) { %>
+                                        <div class="square blue btn btn-orange btn-1x">
+                                            <%= bot.servers %> servers</div>&nbsp;
+                                        <% } %>
+                                        <% if (!bot.verified) { %>
+                                        <div class="square lime btn btn-orange btn-1x">unverified</div>&nbsp;
+                                        <% } %>
+                                        <% if (bot.prefix) { %>
+                                        <div class="square purple btn btn-orange btn-1x">
+                                            <%= bot.prefix %> prefix</div>	&nbsp;
+                                        <% } %>
+  					<% if (bot.certified) { %>
+                                            <div class="square orange btn btn-orange btn-1x">Certified</div>&nbsp;
+                                   
+                                        <% } %>
+ 					<% if (bot._ownerTag) { %>
+                                      <a href="/user/<%= bot.ownerID %>">
+                                            <div class="square grey btn btn-orange btn-1x">Created by <%= bot._ownerTag %></div>	&nbsp;
+                                      
+                                        <% } %>
+                                    </div>
+<div class="bp-info">
+                            <subtitle>
+                                <%= bot.shortDescription %>
+                            </subtitle>
+                            
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                       <hr>
+                            <div class="container">
+                                <div class="btn-group">
+                                    <div class="centre">
+
+                                        <div class="col 1">
+
+                                            <a target="_blank" href="/invite_url/<%=bot.id%>" class="square orange btn btn-orange btn-1x">Invite</a>
+ <a <%=typeof bot.website=='string' ? '' : 'disabled' %> target="_blank"
+                                                href="
+                                                <%= bot.website %>" class="square grey btn btn-orange btn-1x">Website</a>
+<a <%=typeof bot.github=='string' ? '' : 'disabled' %> target="_blank"
+                                                href="
+                                                <%= bot.github %>" class="btn btn-primary">Repo</a>
+
+                                        </div>
+ 
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+ 
+                            <hr>
+                            <p>
+                                <%- bot._markedDescription %>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- <div class="bp-comments">
+                    <hr>
+                    <h4>Comments</h4>
+                    <p>This bot has no comments yet.</p>
+                </div> -->
+                </div>
+                <div id="auth-modal" class="modal">
+                    <div class="modal-content">
+                        <h4 class="red-text">Error</h4>
+                        <p>You need to be logged in to like bots!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="modal-action modal-close waves-effect waves-teal btn-flat" href="/discord/login">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer class="blue lighten-3 page-footer">
+        <%- include("parts/footer") %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js"></script>
+        <%- include("parts/scripts") %>
+    </footer>
+</html>

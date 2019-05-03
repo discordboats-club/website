@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../parts/head", { title: 'Add bot' }) %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("../parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <h4>Add Bot</h4>
+                <subtitle>Here you can submit your bot to be added to our bot list.</subtitle>
+                <hr>
+                <div class="row">
+                    <form class="col s12" id="new-bot-form">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="client_id" type="text" size="18" class="validate">
+                                <label for="client_id">Client ID</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="newbot" required>
+                                    <option disabled selected>Select one</option>
+                                    <% libs.map(lib => { %>
+                                        <option value="<%= lib %>"><%= lib %></option>
+                                    <% }); %>
+                                </select>
+                                <label>Library</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="bot_prefix" type="text" maxlength="25" class="validate">
+                                <label for="bot_prefix">Prefix</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="bot_website" type="url" class="validate">
+                                <label for="bot_website">Website (optional)</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="bot_invite" type="url" class="validate">
+                                <label for="bot_invite">Custom Invite URL (optional)</label>
+                            </div>
+                            <p class="col s6">Custom Invite URLs can be useful if your bot is a moderation bot or a bot
+                                that needs extra permissions - Custom Invite URLs make it easy for the user to start
+                                using your bot quicker. See <a href="https://dbotpermission.looney.gq/" target="_blank">Permissions
+                                    Calculator</a>.</p>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="bot_github" type="url" class="validate" minlength="19">
+                                <label for="bot_github">Repository URL (Optional)</label>
+                            </div>
+                            <p class="col s6">This field is useful if you accept contributions from the public. If the
+                                repo is private, <em>don't put it here.</em></p>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="bot_description" data-length="200" type="text" class="validate">
+                                <label for="bot_description">Short Description</label>
+                            </div>
+                            <p class="col s6">Users browsing the list will see your Short Description before your Full
+                                Description, so make sure to include some info as to why they should click on your bot.</p>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="bot_description-full" class="materialize-textarea"></textarea>
+                                <label for="bot_description-full">Full Description</label>
+                            </div>
+                            <p class="col s6"><a href="https://en.wikipedia.org/wiki/Markdown">Markdown formatting</a>
+                                is supported in the Full Description.</p>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="like_webhook" type="url" class="validate">
+                                <label for="like_webhook">Like Webhook (optional)</label>
+                            </div>
+                            <p class="col s6">If you need to get when a user likes your bot, you can set up a webhook
+                                server, and the address to that server goes here so it can be notified. See the API
+                                Documentation for more details</p>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="webhook_auth" type="text" class="validate">
+                                <label for="webhook_auth">Like Webhook Auth (required with a like webhook)</label>
+                            </div>
+                            <p class="col s6">The text to put into the Authorization header to make sure the request is
+                                from the DBU server</p>
+                        </div>
+                        <div class="row">
+                            <button class="btn waves-effect waves-light" type="submit" name="action" id="nb-submit">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <%- include("../parts/footer") %>
+        <%- include("../parts/scripts") %>
+    </footer>
+</html>

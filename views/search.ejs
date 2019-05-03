@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("parts/head") %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <%- include("parts/searchBar") %>
+                <h3>Search results for </h3>
+                <subtitle>
+                    <%= bots.length %> found.</subtitle>
+                <hr>
+                <% console.log(botChunks, bots); if (bots.length == 0) { %>
+                <p>We couldn't find any bots for "<strong><%= searchQuery %></strong>".</p><%= console.log(searchQuery); %>
+                <% } else { %>
+                <div class="bot-cards">
+                    <!-- Bot cards includes can go here -->
+                    <%- botChunks.map(chunk => `<div class="row bot-card">${chunk.map(bot => include("parts/botCard", {bot})).join("")}</div>`).join("") %>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <%- include("parts/footer") %>
+        <%- include("parts/scripts") %>
+    </footer>
+</html>

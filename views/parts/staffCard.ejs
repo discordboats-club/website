@@ -1,0 +1,57 @@
+<div class="col s12 m3" id="<%= staff.id %>">
+    <div class="card hoverable blue-grey darken-1">
+        <div class="card-image bot-image-container">
+            <a href="/user/<%= staff.vanityURL || staff.id %>"><img src="<%= staff._discordAvatarURL %> " class="bot-image" alt="Staff Profile Picture"></a>
+        </div>
+        <div class="card-content white-text">
+            <span class="card-title">
+                <%= staff.username %> <i class="fas fa-circle" style="color: <%= staff.online ? '#5cb860' : 'grey' %>; height: 20px:"></i>
+				
+				</span>
+            <p class="bot-card-desc">
+                <%- staff.badges.join(" | ") %>
+				<% if (staff.activity) { %>
+					<br>
+					<br>
+					<% let typetype = staff.activity.type.toLowerCase(); let typetypeCap = typetype.charAt(0).toUpperCase() + typetype.slice(1); %>
+					<a style="color: white;" 
+					<% if(staff.activity.details){%>
+					title="<%= staff.activity.details %>"
+					<% } %>
+					><%= typetypeCap %> <%= staff.activity.name %>
+					<br>
+					<% if(staff.clientStatus){%>On
+						<% if(staff.clientStatus.mobile){ %>
+							Mobile
+							<% if(staff.clientStatus.desktop){ %>
+							 & Dekstop
+							<% } %>
+						<% } else { %>
+							<% if(staff.clientStatus.desktop) { %>
+								Desktop
+							<% } %> 
+						<% } %> 
+					<% } %>
+					</a>
+					
+				<% } else { %>	
+					<% if(staff.clientStatus){%>
+					<br>
+						<% if(staff.clientStatus.mobile){ %>
+							On Mobile
+							<% if(staff.clientStatus.desktop){ %>
+							 & Dekstop
+							<% } %>
+						<% } else { %>
+							<% if(staff.clientStatus.desktop) { %>
+								On Desktop
+							<% } %> 
+						<% } %> 
+					<% } %>
+				<% } %>	
+            </p>
+			
+        </div>
+       
+    </div>
+</div>

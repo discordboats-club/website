@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "discordboats.club",
+            "script": "app.js",
+            "watch": true,
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
