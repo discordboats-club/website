@@ -23,4 +23,4 @@ We've only tested this on Windows and Linux at the moment, feel free to make a P
 `discordboatsclubv1.bots`
 * Rename the `config.json.example` to `config.json` and fill in the required fields with your Discord application details.
 * Run the app, `pm2 start app.js`
-* I recommend you setup a backup system with rethinkdb and enable automatic backups
+
