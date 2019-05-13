@@ -12,7 +12,7 @@ module.exports.run = async (client, msg, args) => {
     if (!bot) return msg.channel.send('A user mention, id, or tag is required');
     if (!bot.bot) return msg.channel.send('The given user is not a bot');
     const botRow = await r.table('bots').get(bot.id);
-    if (!botRow) return msg.channel.send('That bot is not listed on dbu');
+    if (!botRow) return msg.channel.send('That bot is not listed on dboats');
     const owner = await client.users.fetch(botRow.ownerID)
     const uploaded = new Date(await botRow.createdAt).toLocaleDateString('en-GB', { 	day : 'numeric', month : 'short', year : 'numeric' });
     const page = `[Page](${client.config.baseURL}/bot/${bot.id})`;
