@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../parts/head", { title: 'Dashboard' }) %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("../parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="row">
+                    <h3>My Bots</h3>
+                    <subtitle>Bots you've submitted to the list.</subtitle>
+                    <hr>
+                    <a href="/dashboard/new" class="waves-effect waves-light btn">Add Bot</a>
+                </div>
+                <% if (rawBots.length == 0) { %>
+                <p>You have no bots! <a href="/dashboard/new">Add one?</a></p>
+                <% } else { %>
+                <div class="bot-cards">
+                    <!-- Bot cards includes can go here -->
+                    <%- myBots.map(chunk => `<div class="row bot-card">${chunk.map(bot => include("../parts/botCard", {bot, api: true}))}</div>`) %>
+                </div>
+                <hr>
+                <% } %>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <%- include("../parts/footer") %>
+        <%- include("../parts/scripts") %>
+    </footer>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../parts/head") %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("../parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <h3>Verification queue</h3>
+                <subtitle>Bots queued for verification.</subtitle>
+                <hr>
+                <% if (rawBots.length == 0) { %>
+                <p>Oh, there are currently no bots queued for verification. Your job is done.</p>
+                <% } else { %>
+                <div class="bot-cards">
+                    <%- chunks.map(chunk => `<div class="row bot-card">${chunk.map(bot => include("../parts/botCard", {bot, queue: true, config})).join("")}</div>`).join("") %>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <%- include("../parts/footer") %>
+        <%- include("../parts/scripts") %>
+    </footer>
+</html>

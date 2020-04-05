@@ -1,0 +1,37 @@
+<% if (typeof user == 'object') { %>
+<ul id="profile-dropdown" class="dropdown-content">
+    <li><a href="/user/<%=user.id%>">Profile</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>
+<% if (user.mod || user.admin) { %>
+	<li><a href="/admin">Staff Panel</a></li>  
+<% } %>
+    <li><a id="log-out-indd">Log Out</a></li>
+</ul>
+<% } %>
+
+<nav class="blue lighten-l">
+    <div class="nav-wrapper">
+       <a href="/" class="brand-logo">&nbsp;discordboats.club</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+		<li><a href="/staff">Staff Team</a></li>
+	
+
+				 
+            <li><a href="/browse">Browse Bots</a></li>
+	    <li><a href="/dashboard/new">Add Bot</a></li>
+      <li><a href="https://discord.gg/Cw4GDJ4">Our Discord</a></li>
+
+            <li><a href="/certification">Certification</a></li>
+            <% if (typeof user !== 'object') { %>
+            <li><a href="/discord/login">Login</a></li>
+            <% } else { %>
+                <li id="user-profile-navbar-item"><a href="#" class="dropdown-trigger" data-target="profile-dropdown" id="profile-dropdown-trigger"> <img class="responsive-img circle" alt="User Avatar" style=" vertical-align: middle; width: 38px !important; height: 38px !important;"src="<%=user._discordAvatarURL%>"></a></li>
+            <% } %>
+        </ul>
+    </div>
+    <div class="nav-content hide-on-small-only">
+        <%- typeof childBefore === "string" ? childBefore : ""  %>
+    </div>
+</nav>
+
+<div id="snow"></div>

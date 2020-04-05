@@ -1,0 +1,43 @@
+<div class="page-footer footer blue lighten-3" style="color: #212121 !important;">
+    
+       
+
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+					<li><a class="grey-text text-lighten-3" href="/staff">Staff Team</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/browse">Browse</a></li>
+					 <li><a class="grey-text text-lighten-3" href="/about">About Us</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/certification">Certification</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://discord.gg/Cw4GDJ4">Discord</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/terms">Terms Of Service</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/privacy">Privacy Policy</a></li>
+
+                    <% if (typeof user !== 'object') { %>
+                    <li><a class="grey-text text-lighten-3" href="/discord/login">Login</a></li>
+                    <% } else { %>
+                    <li><a class="grey-text text-lighten-3" href="/dashboard">Dashboard</a></li>
+                    <% } %>
+                    <li><a class="grey-text text-lighten-3" href="/stats">Stats</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/discordboats-club/">GitHub</a></li>
+
+                   
+    <div class="footer-copyright">
+        <div class="center footer-copyright-text">
+			<br>
+            &copy; 2019-2020 discordboats.club
+        </div>
+    </div>
+ <div class="switch" style="display: none;">
+                        <br>
+                        Light Theme<br>
+                        <label>
+                            <input type="checkbox" id="themeControl">
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>

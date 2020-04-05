@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("parts/head", { title: 'Browse' }) %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+             
+                <h3>Browse Bots</h3>
+                <subtitle>Page
+                    <%= page + 1 %> of
+                    <%= pages %>, viewing bots
+                    <%= (page * itemsPerPage) + 1 %>-
+                    <%= (page * itemsPerPage) + (page + 1 === pages ? items % itemsPerPage : itemsPerPage) %> of
+                    <%= items %>
+                </subtitle>
+                <hr>
+   <%- include("parts/searchBar") %>
+                <div class="row">
+                    <div id="sortSelect" class="input-field col l3">
+                        <select>
+                            <% sorting.sorts.forEach(s => { %>
+                            <option value="?page=<%= page + 1 %>&sort=<%= s[1] %>&order=<%= ordering.current %>" <%=sorting.current===s[1]
+                                ? 'selected' : '' %>>
+                                <%= s[0] %>
+                            </option>
+                            <% }); %>
+                        </select>
+                        <label>Sort By</label>
+                    </div>
+                    <div id="orderSelect" class="input-field col l3">
+                        <select>
+                            <% ordering.orders.forEach(o => { %>
+                            <option value="?page=<%= page + 1 %>&sort=<%= sorting.current %>&order=<%= o[1] %>" <%=ordering.current===o[1]
+                                ? 'selected' : '' %>>
+                                <%= o[0] %>
+                            </option>
+                            <% }); %>
+                        </select>
+                        <label>Order</label>
+                    </div>
+                </div>
+
+                <% if (rawBots.length == 0) { %>
+                <p>There's no bots on this site at the moment. <a href="/dashboard/new">Add one?</a></p>
+                <% } else { %>
+                <div class="bot-cards">
+                    <!-- Bot cards includes can go here -->
+                    <%- botChunks.map(chunk => `<div class="row bot-card">${chunk.map(bot => include("parts/botCard", {bot})).join("")}</div>`).join("") %>
+                </div>
+                <% } %>
+
+                <ul class="pagination center-align">
+                    <% if (page === 0) { %>
+                    <li class="disabled"><a><i class="material-icons grey-text text-darken-2">chevron_left</i></a></li>
+                    <% } else { %>
+                    <li class="waves-effect"><a href="?page=<%= page %>&sort=<%= sorting.current %>&order=<%= ordering.current %>"><i
+                                class="material-icons grey-text text-lighten-1">chevron_left</i></a></li>
+                    <% } %>
+
+                    <% for (let p = 0; p < pages; p++) { %>
+                    <li class="<%= page === p ? 'active grey darken-1' : 'waves-effect' %>"><a <%- page===p ? '' :
+                            `href="?page=${p + 1}&sort=${sorting.current}&order=${ordering.current}" class="grey-text text-lighten-1"
+                            ` %> >
+                            <%= p + 1 %></a></li>
+                    <% } %>
+
+                    <% if (page === pages - 1) { %>
+                    <li class="disabled"><a><i class="material-icons grey-text text-darken-2">chevron_right</i></a></li>
+                    <% } else { %>
+                    <li class="waves-effect"><a href="?page=<%= page + 2 %>&sort=<%= sorting.current %>&order=<%= ordering.current %>"><i
+                                class="material-icons grey-text text-lighten-1">chevron_right</i></a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <%- include("parts/footer") %>
+        <%- include("parts/scripts") %>
+    </footer>
+</html>

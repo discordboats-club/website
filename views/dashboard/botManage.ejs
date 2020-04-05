@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../parts/head") %>
+    </head>
+
+    <body>
+        <div class="header">
+            <%- include("../parts/header") %>
+        </div>
+        <div class="main">
+            <div class="container">
+                <img width="128" height="128" src="<%=bot._discordAvatarURL%>" class="circle">
+                <h3 class="manage-bot-pfp">Manage "<%= bot.name %>"</h3><br>
+                <subtitle>Delete your bot, edit it and get its API Key.</subtitle>
+                <hr>
+                <a class="waves-effect waves-light btn-large <%= bot._ownerViewing ? `` : `disabled` %>" target="_blank"
+                    href="/bot/<%= bot.id %>/key">View API key</a>
+                <a class="waves-effect waves-light btn-large bpm-button" href="/dashboard/bot/<%= bot.id %>/edit">Edit
+                    Bot</a>
+                <button class="waves-effect waves-red btn-large red bpm-button modal-trigger" data-target="delete-bot-modal"><i
+                        class="material-icons left">delete_forever</i>Delete Bot</button>
+            </div>
+        </div>
+        <div id="delete-bot-modal" class="modal" data-bot-id="<%= bot.id %>">
+            <div class="modal-content">
+                <h4 class="red-text">Are you sure you want to delete this bot?</h4>
+                <p>You cannot revert this action! Be careful.</p>
+            </div>
+            <div class="modal-footer">
+                <a id="delete-bot-action" class="modal-action modal-close waves-effect waves-red btn-flat red-text">Delete
+                    It</a>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <%- include("../parts/footer") %>
+        <%- include("../parts/scripts") %>
+    </footer>
+</html>

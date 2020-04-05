@@ -1,0 +1,47 @@
+<div class="col s12 m3 col-md-6 col-lg-4 align-center" id="<%= bot.id %>">
+    <div class="card hoverable blue-grey darken-1 col-lg-2 col-md-3 col-sm-4 col-6" style="max-width: 18rem; max-length: 18rem;">
+        <div class="card-image bot-image-container">
+            <a href="/bot/<%= bot.vanityURL || bot.id %>"><img src="<%= bot._discordAvatarURL %> " class="bot-image" alt="Bot Profile Picture"></a>
+        </div>
+        <div class="card-content white-text">
+            <span class="card-title">
+                <%= bot.name %> <i class="fas fa-circle" style="color: <%= bot.online ? '#5cb860' : '#f55a4e' %>; height: 20px:"></i>
+				
+					<% if (bot.certified) { %>
+					  <i class="fas fa-star" style="color: #ffff1a;"></i>
+					<% } %>
+				
+				</span>
+            <p class="bot-card-desc">
+                <%= bot.shortDescription %>
+            </p>
+
+		<br>	
+        </div>
+       <div class="card-action">
+            <a href="/invite_url/<%=bot.id%>" <%- typeof queue !=='undefined' ? 'target="_blank"' : '' %>> Invite</a>
+            <a href="/bot/<%= bot.vanityURL || bot.id %>">View</a>
+            <% if (typeof queue !== "undefined") { %>
+            <a class="accept-button" href="https://discordapp.com/oauth2/authorize?client_id=<%= bot.id %>&scope=bot&guild_id=<%= config.ids.mainServer %>" target="_blank"><strong>Accept</strong></a>
+            <a class="deny-button modal-trigger" data-target="deny-modal-<%= bot.id %>" href="#"><strong>Deny</strong></a>
+            <div id="deny-modal-<%= bot.id %>" class="modal" data-bot-id="<%= bot.id %>">
+                <div class="modal-content">
+                    <h5>Deny
+                        <%= bot.name %>?</h5>
+                    <div class="input-field">
+                        <input type="text" id="deny-reason-<%= bot.id %>" />
+                        <label for="deny-reason-<%= bot.id %>">Reason</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="modal-action modal-close waves-effect waves-light btn-flat white-text">Cancel</a>
+                    <a class="deny-bot-action modal-action modal-close waves-effect waves-red btn-flat red-text">Deny</a>
+                </div>
+            </div>
+            <% } %>
+            <% if (typeof api !== "undefined" || (typeof user !== 'undefined' && (user.mod || user.admin))) { %>
+            <a class="api-key-button" href="/dashboard/bot/<%= bot.id %>/manage">Manage</a>
+            <% } %>
+        </div>
+    </div>
+</div>

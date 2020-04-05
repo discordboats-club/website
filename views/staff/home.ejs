@@ -1,0 +1,45 @@
+<section class="hero is-medium is-info">
+    <div class="hero-body">
+      <div class="container">
+          <h1 class="title">
+            Staff Panel
+          </h1>
+          <h2 class="subtitle">
+            Dashboard for staff to manage the site.
+        </h2>
+      </div>
+    </div>
+  </section>
+<div class="container margin-top-20">
+    <div class="columns">
+        <%- include('../../partials/staff-nav.ejs') %>
+        <div class="column is-10">
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading" id="headingtitle">Bots</p>
+                        <p class="title" id="headingsubtitle"><%= bots %></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading" id="headingtitle">Unapproved Bots</p>
+                        <p class="title" id="headingsubtitle"><%= unaprooved_bots %></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading" id="headingtitle">Verified Bots</p>
+                        <p class="title" id="headingsubtitle"><%= verified_bots %></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading" id="headingtitle">Users</p>
+                        <p class="title" id="headingsubtitle"><%= users %></p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
